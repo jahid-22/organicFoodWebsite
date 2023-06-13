@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}<title> Product detail</title>{% endblock title %}
+
+{% block carousel %}{% endblock carousel %}
+{% block main-content %}
+
+<div class="container">
+    <div class="row gx-4" id="profile-style">
+        <h2 class="text-center mb-2">Product details</h2>
+        <hr class="mb-3">
+
+        <div class="col-sm-5  shadow p-3 rounded">
+            <div class="box1">
+                <div class="img">
+                    <img src="{{poroduct.productImg.url}}" style="width:400px;" class="img-fluid rounded" alt="product honey oil pure">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-sm-6 ">
+            <div class="content shadow p-3 rounded">
+                <h4 class="text-body">{{poroduct.title}}</h4>
+                <p><b>Quantity: </b> {{poroduct.quantity}}</p>
+                <p><b>Selling price: </b> {{poroduct.sellingprice}}</p>
+                <p class="text-body"><b>Discounted price: </b> <span class="text-decoration-line-through">{{poroduct.discountedprice}}</span></p>
+                <p><b>Product description: </b> {{poroduct.description}}</p>
+
+                <div class="d-flex ">
+                    {% if product_allready_on_cart %}
+
+                    <form action="/add_to_cart/">
+                        <input type="hidden" name="prod_id" value="{{gh.id}}">
+                        <button class="text-white btn btn-primary"  type="submit">Go to cart</button>
+                        </form>
+
+                {% else %}
+                <form action="/add_to_cart/">
+                    <input type="hidden" name="prod_id" value="{{gh.id}}">
+                    <button class="text-white btn btn-primary"  type="submit">Add to cart</button>
+                    </form>
+                {% endif %}
+                <div class="ms-2">
+                    <form action="{% url 'buy_now' %}">
+                        <button class="btn btn-primary" name="prod_id" value="{{poroduct.id}}" type="submit" >Buy now 
+                        </button>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock main-content %}

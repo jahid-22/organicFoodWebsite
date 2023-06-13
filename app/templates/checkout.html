@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block carousel %}{% endblock carousel %}
+
+{% block main-content %}
+<div class="container">
+ <div class="row " id="profile-style">
+  <div class="col-sm-6">
+    <h4>Order Summary</h4>
+    <hr>
+      <div class="card mb-2">
+        <div class="card-body">
+          <h5>Total Product: {{total_quantity}}</h5>
+          <p class="fw-bold">Total Price: {{totalamount}}</p>
+        </div>
+      </div>
+    <small>Term and Condition: Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, ullam saepe! Iure optio repellat dolor velit, minus rem. Facilis cumque neque numquam laboriosam, accusantium adipisci nisi nihil in et quis?</small>
+  </div>
+  <div class="col-sm-4 offset-sm-1">
+    <h4>Select Shipping Address</h4>
+    <hr>
+    
+    <form action="{% url 'paymentdone' %}" enctype="multipart/form-data">
+      {% for ad in address %}
+      <div class="card">
+        <div class="card-body">
+        <h5>{{ad.name}}</h5>
+        <p>{{ad.district}}, {{ad.address}}</p>
+        </div>
+      </div>
+      
+        <div class="form-check mt-2 mb-5">
+          <input class="form-check-input" type="radio" name="custid" id="custid{{forloop.counter}}" value="{{ad.id}}">
+          <label class="form-check-label fw-bold" for="custid{{forloop.counter}}">
+            Address:{{forloop.counter}} </label>
+        </div>
+        {% endfor %}
+
+        <div class="text-end">
+          <a href=" https://sandbox.aamarpay.com/request.php" class="btn btn-warning mt-3 px-5 fw-bold">Continue</a>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+</div>
+{% endblock main-content %}

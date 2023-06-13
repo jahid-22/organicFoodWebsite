@@ -1,0 +1,61 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block title %}<title>Profile Page</title>{% endblock title %} 
+{% block carousel %}{% endblock carousel %} 
+
+{% block main-content %}
+<div class="container mb-5">
+  <div class="row" id="profile-style">
+    <h2 class="text-center mb-2">Welcome {{request.user | capfirst}}</h2>
+    <hr class="style8 mb-4" />
+
+    <div class="col-sm-3">
+      <div class="list-group">
+        <a
+          href="{% url 'profile' %}"
+          class="list-group-item list-group-item-action active"
+          aria-current="true"
+        >
+          Profile
+        </a>
+        <a
+          href="{% url 'address' %}"
+          class="list-group-item list-group-item-action"
+          >Address</a
+        >
+        <a href="{% url 'order' %}" class="list-group-item list-group-item-action"
+          >Orders</a
+        >
+        <a href="#" class="list-group-item list-group-item-action"
+          >Wish lists</a
+        >
+      </div>
+    </div>
+
+    <div class="col-sm-8 d-flex justify-content-between offset-sm-1 shadow p-3" >
+      <div class="main-box">
+        <div class="box pb-2">
+          <div class="title"><p class="p-0 m-0"><b>User Name: </b>{{request.user | capfirst}}</p> <small class="">want to <a href="">change</a> User Name?</small></div>
+        </div>
+  
+        <div class="box pb-2">
+          <div class="title"><p class="p-0 m-0"><b>User Email: </b><small>{{form.email}}</small></p> <small class="">want to <a href=""> change</a>User Email?</small></div>
+        </div>
+      </div>
+
+
+      <div class="main-box">
+        <div class="box pb-2">
+          <div class="title"><p class="p-0 m-0"><b>User Password: </b><small>Unable to show password</small></p> <small class="">want to <a href="{% url 'passchange' %}">change</a> User password?</small></div>
+        </div>
+  
+        <div class="box pb-2">
+          <div class="title"><p class="p-0 m-0"><b>User Email: </b>{{form.email}}</p> <small class="">want to <a href="">change</a> User Email?</small></div>
+        </div>
+      </div>
+
+
+  </div>
+</div>
+
+{% endblock main-content %}

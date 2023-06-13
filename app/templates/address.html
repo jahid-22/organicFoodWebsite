@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}<title>Address page</title>{% endblock title %}
+{% block carousel %}{% endblock carousel %}
+
+{% block main-content %}
+<div class="container mb-5">
+    <div class="row" id="profile-style">
+        <h2 class="text-center mb-2 ">Welcome {{request.user | capfirst}}</h2>
+        <hr class="style8 mb-4">
+      <h2 class="text-center mb-2 ">You can add more than three address!!!</h2>
+        <a href="{% url 'add-address' %}" class="btn mb-3 btn-success btn-sm">Add a new address</a>
+
+        <div class="col-sm-2">
+            <div class="list-group">
+                <a href="{% url 'profile' %}" class="list-group-item list-group-item-action active" aria-current="true">
+                  Profile
+                </a>
+                <a href="{% url 'address' %}" class="list-group-item list-group-item-action">Address</a>
+                <a href="{% url 'order' %}" class="list-group-item list-group-item-action">Orders</a>
+                <a href="#" class="list-group-item list-group-item-action">Wish lists</a>
+              </div>
+        </div>
+
+        {% for fm in form %}
+        <div class="col-sm-5">
+         <div class="card">
+          <div class="card-body">
+           <h3>Address {{forloop.counter}}</h3>
+           <hr>
+           <p><b>Name:</b> {{fm.name}}</p>
+           <p><b>email:</b> {{fm.email}}</p>
+           <p><b>phone:</b> {{fm.phone}}</p>
+           <p><b>district: </b>{{fm.district}}</p>
+           <p><b>address: </b>{{fm.address}}</p>
+          </div>
+         </div>
+        </div>
+        {% endfor %}
+    
+</div>
+
+{% endblock main-content %}
